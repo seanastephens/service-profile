@@ -44,6 +44,13 @@ topology_template:
           gateway_ip: 10.168.1.1
           gateway_mac: 02:42:0a:a8:00:01
 
+    addresses_openvpnservice-public:
+      type: tosca.nodes.AddressPool
+      properties:
+          addresses: 10.168.2.0/24
+          gateway_ip: 10.168.2.1
+          gateway_mac: 02:42:0a:a8:00:01
+
     service#vsg:
       type: tosca.nodes.VSGService
       requirements:
@@ -71,6 +78,9 @@ topology_template:
               relationship: tosca.relationships.ProvidesAddresses
           - addresses_service1:
               node: addresses_exampleservice-public
+              relationship: tosca.relationships.ProvidesAddresses
+          - addresses_service2:
+              node: addresses_openvpnservice-public
               relationship: tosca.relationships.ProvidesAddresses
 
 
