@@ -9,6 +9,9 @@ imports:
 topology_template:
   node_templates:
 
+    m1.small:
+      type: tosca.nodes.Flavor
+
     PrivateOpenVPN:
       type: tosca.nodes.NetworkTemplate
 
@@ -68,6 +71,9 @@ topology_template:
           - image:
               node: trusty-server-multi-nic
               relationship: tosca.relationships.DefaultImage
+          - default_flavor:
+              node: m1.small
+              relationship: tosca.relationships.DefaultFlavor
 
     service#openvpn:
       type: tosca.nodes.OpenVPNService
